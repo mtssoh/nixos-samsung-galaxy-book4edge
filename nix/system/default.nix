@@ -55,9 +55,11 @@
       enableContribAndExtras = true;
       config = builtins.readFile ../dotfiles/xmonad.hs;
     };
-
-    libinput.naturalScrolling = true;      
   };
+
+  # Antes vivia en services.xserver.libinput; ahi esta deprecado y el alias
+  # apunta al touchpad, asi que va explicito.
+  services.libinput.touchpad.naturalScrolling = true;
 
   fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
 
