@@ -161,7 +161,7 @@ servicio systemd (`samsung-galaxybook-battery`) escribiendo en
 | GPU | acelerada, Adreno X1-85, Mesa + turnip |
 | touchpad | anda, con el dts parcheado a 0x50 |
 | teclado, wifi, bluetooth | andan |
-| suspend | anda desde tty; falta prueba seria con sesion grafica |
+| suspend | anda; al volver a X la pantalla queda azul hasta cambiar de VT y volver (falta el modeset del DPU). Cosmetico, no probado desde niri |
 | USB-C datos | anda |
 | **USB-C PD / altmode** | **sin arreglo posible, ver abajo** |
 | audio | roto: los `wsa884x` (amplificadores) no bindean |
@@ -199,7 +199,8 @@ encendido**. Hay que apagarla para enchufarla.
 
 - Reinstalar en una particion mas grande (plan principal del usuario).
 - Audio: parches de pinctrl para que bindeen los `wsa884x`.
-- Probar suspend con sesion grafica, wifi asociado y tapa cerrada.
+- Suspend: la pantalla azul al volver a X se arregla con un VT switch. Vale
+  probar desde niri para saber si es del DPU o de X11.
 - `DEBUG_INFO_BTF` para poder usar BPF con CO-RE. Obliga a apagar
   `DEBUG_INFO_REDUCED` y lleva el build de ~12 GB a ~30 GB. Diferido a
   proposito hasta tener disco.
